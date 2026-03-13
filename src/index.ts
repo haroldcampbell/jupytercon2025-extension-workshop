@@ -3,6 +3,7 @@ import {
 	JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 import { ICommandPalette } from '@jupyterlab/apputils';
+import { ILauncher } from '@jupyterlab/launcher';
 
 import { requestAPI } from './request';
 import { ImageCaptionMainAreaWidget } from './widgets';
@@ -14,13 +15,14 @@ const plugin: JupyterFrontEndPlugin<void> = {
 	id: 'jupytercon2025-extension-workshop:plugin',
 	description: 'HMC: A JupyterLab extension: random image generator',
 	autoStart: true,
-	requires: [ICommandPalette], // dependencies of our extension
+	requires: [ICommandPalette, ILauncher], // dependencies of our extension
 
 	activate: (
 		app: JupyterFrontEnd,
 		// The activation method receives dependencies in the order they are specified in
 		// the "requires" parameter above:
-		palette: ICommandPalette
+		palette: ICommandPalette,
+		launcher: ILauncher
 	) => {
 		console.log('HMC Extension is activated!');
 
@@ -50,6 +52,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
 		});
 
 		palette.addItem({ command: command_id, category: 'Tutorial' });
+		launcher.add({ command: command_id });
 	}
 };
 
