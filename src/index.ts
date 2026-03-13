@@ -4,9 +4,17 @@ import {
 } from '@jupyterlab/application';
 import { ICommandPalette } from '@jupyterlab/apputils';
 import { ILauncher } from '@jupyterlab/launcher';
+import { LabIcon } from '@jupyterlab/ui-components';
 
 import { requestAPI } from './request';
 import { ImageCaptionMainAreaWidget } from './widgets';
+
+import iconSvgstr from '../icons/icon.svg';
+
+export const myCustomIcon = new LabIcon({
+	name: 'my-extension:my-icon', // Use a unique name
+	svgstr: iconSvgstr
+});
 
 /**
  * Initialization data for the jupytercon2025-extension-workshop extension.
@@ -40,6 +48,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
 		//Register a new command:
 		const command_id = 'image-caption:open';
 		app.commands.addCommand(command_id, {
+			icon: myCustomIcon,
 			label: 'View a random image & caption',
 			execute: () => {
 				// When the command is executed, create a new instance of our widget
