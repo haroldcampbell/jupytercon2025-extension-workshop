@@ -1,7 +1,7 @@
 {
     "name": "jupytercon2025-extension-workshop",
     "version": "0.1.0",
-    "description": "A JupyterLab extension that displays a random image and caption.",
+    "description": "Package: A JupyterLab extension that displays a random image and caption.",
     "keywords": [
         "jupyter",
         "jupyterlab",
@@ -178,6 +178,7 @@
         "trailingComma": "none",
         "arrowParens": "avoid",
         "endOfLine": "auto",
+        "useTabs": true,
         "overrides": [
             {
                 "files": "package.json",

@@ -16,6 +16,10 @@ test('should emit an activation console message', async ({ page }) => {
   await page.goto();
 
   expect(
-    logs.filter(s => s === 'JupyterLab extension jupytercon2025-extension-workshop is activated!')
+    logs.filter(
+      s =>
+        s ===
+        'JupyterLab extension jupytercon2025-extension-workshop is activated!'
+    )
   ).toHaveLength(1);
 });
