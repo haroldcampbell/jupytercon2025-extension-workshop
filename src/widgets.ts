@@ -1,6 +1,6 @@
 import { Widget } from '@lumino/widgets';
-import { MainAreaWidget } from '@jupyterlab/apputils';
-import { imageIcon } from '@jupyterlab/ui-components';
+import { MainAreaWidget, ToolbarButton } from '@jupyterlab/apputils';
+import { imageIcon, refreshIcon } from '@jupyterlab/ui-components';
 
 import { requestAPI } from './request';
 
@@ -11,11 +11,17 @@ class ImageCaptionWidget extends Widget {
 
 		// Create and append an HTML <p> (paragraph) tag to our widget's node in
 		// the HTML document
-		const hello = document.createElement('p');
-		hello.innerHTML = 'Hello, world!';
-		this.node.appendChild(hello);
+		// const hello = document.createElement('p');
+		// hello.innerHTML = 'Hello, world!';
+		// this.node.appendChild(hello);
 
-		const center = document.createElement('center');
+		// const center = document.createElement('center');
+		const center = document.createElement('div');
+		center.style.display = 'flex';
+		center.style.flexDirection = 'column';
+		center.style.justifyContent = 'center'; // Horizontal center
+		center.style.alignItems = 'center'; // Vertical center
+		center.style.width = '100%';
 		this.node.appendChild(center);
 
 		// Put an <img> tag into the <center> tag, and also save it as a class
@@ -58,5 +64,15 @@ export class ImageCaptionMainAreaWidget extends MainAreaWidget<ImageCaptionWidge
 		this.title.label = 'Random image with caption';
 		this.title.caption = this.title.label;
 		this.title.icon = imageIcon;
+
+		// Add a refresh button to the toolbar
+		const refreshButton = new ToolbarButton({
+			icon: refreshIcon,
+			tooltip: 'Refresh image',
+			onClick: () => {
+				widget.load_image();
+			}
+		});
+		this.toolbar.addItem('refresh', refreshButton);
 	}
 }
